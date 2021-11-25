@@ -1,0 +1,285 @@
+{
+  "$schema": "http://json-schema.org/schema#",
+  "type": "object",
+  "properties": {
+    "image": {
+      "type": "object",
+      "title": "软件镜像",
+      "properties": {
+        "repository": {
+          "type": "string",
+          "title": "镜像地址",
+          "default": "viper/gpu-searcher"
+        },
+        "pullPolicy": {
+          "type": "string",
+          "title": "镜像拉取策略",
+          "default": "IfNotPresent",
+          "enum": ["IfNotPresent", "Always"]
+        },
+        "tag": {
+          "type": "string",
+          "title": "镜像标签",
+          "default": "",
+          "description": "仅在需要使用定制版本时填写。使用标准版本时留空不填。"
+        }
+      },
+      "required": [
+        "pullPolicy",
+        "repository"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "title": "实例名称",
+      "examples": ["default", "b001p001"],
+      "default": "default"
+    },
+    "https_enabled": {
+      "type": "boolean",
+      "title": "启用https",
+      "default": true
+    },
+    "log_level": {
+      "type": "string",
+      "title": "日志级别",
+      "enum": ["info", "debug"],
+      "default": "info"
+    },
+    "dump_interval": {
+      "type": "integer",
+      "title": "特征导出间隔（秒）",
+      "default": 3600
+    },
+    "done_shard_threshold_size": {
+      "type": "integer",
+      "title": "单分片特征条数上限",
+      "default": 999999,
+      "maximum": 999999
+    },
+    "done_shard_started_days": {
+      "type": "integer",
+      "title": "单分片特征天数上限",
+      "default": 7
+    },
+    "done_shard_unmodified_days": {
+      "type": "integer",
+      "title": "单分片无修改关闭天数",
+      "default": 1
+    },
+    "shard_expired_days": {
+      "type": "integer",
+      "title": "分片过期清理天数",
+      "default": 3653
+    },
+    "max_captured_time_latency": {
+      "type": "integer",
+      "title": "入库时差最长容忍时间（秒）",
+      "default": 86400
+    },
+    "rpc_timeout_seconds": {
+      "type": "integer",
+      "title": "RPC超时（秒）",
+      "default": 5
+    },
+    "rebalance_min_shard_size": {
+      "type": "integer",
+      "title": "rebalance_min_shard_size",
+      "default": 999999,
+      "maximum": 999999
+    },
+    "loadshard": {
+      "type": "boolean",
+      "title": "loadshard",
+      "default": true
+    },
+    "coordinator_sync_oplog": {
+      "type": "boolean",
+      "title": "coordinator_sync_oplog",
+      "default": false
+    },
+    "worker_reducer_sync_oplog": {
+      "type": "boolean",
+      "title": "worker_reducer_sync_oplog",
+      "default": true
+    },
+    "single_node": {
+      "type": "boolean",
+      "title": "单节点模式",
+      "default": false,
+      "enum": [false]
+    },
+    "face_model_version": {
+      "type": "string",
+      "title": "face_model_version",
+      "default": "249v2"
+    },
+    "face_versions": {
+      "type": "array",
+      "title": "face_versions",
+      "items": {
+        "type": "integer"
+      },
+      "default": [24802, 24902]
+    },
+    "pedestrian_model_version": {
+      "type": "string",
+      "title": "pedestrian_model_version",
+      "default": "1.45"
+    },
+    "ped_versions": {
+      "type": "array",
+      "title": "pedestrian versions",
+      "items": {
+        "type": "integer"
+      },
+      "default": [10402, 10405]
+    },
+    "nodes": {
+      "type": "string",
+      "title": "运行节点类型",
+      "default": "engine-stream",
+      "enum": ["engine-stream"]
+    },
+    "reducers": {
+      "type": "integer",
+      "title": "Reducer Replicas",
+      "default": 0,
+      "description": "设置reducer副本数。0为自动计算"
+    },
+    "reducer_cpu_request": {
+      "type": "string",
+      "title": "Reducer CPU Request",
+      "default": "2"
+    },
+    "reducer_memory_request": {
+      "type": "string",
+      "title": "Reducer Memory Request",
+      "default": "2Gi"
+    },
+    "coordinators": {
+      "type": "integer",
+      "title": "Coordinator Replicas",
+      "default": 1
+    },
+    "coordinator_cpu_request": {
+      "type": "string",
+      "title": "Coordinator CPU Request",
+      "default": "2"
+    },
+    "coordinator_memory_request": {
+      "type": "string",
+      "title": "Coordinator Memory Request",
+      "default": "3Gi"
+    },
+    "workers": {
+      "type": "array",
+      "title": "Workers配置",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "title": "Name",
+              "default": "t4",
+              "enum": ["t4", "p4"]
+            },
+            "replicas": {
+              "type": "integer",
+              "title": "Replicas",
+              "default": 6
+            },
+            "cpu_request": {
+              "type": "string",
+              "title": "CPU Request",
+              "default": "3"
+            },
+            "memory_request": {
+              "type": "string",
+              "title": "Memory Request",
+              "default": "6Gi"
+            },
+            "omp_num_threads": {
+              "type": "integer",
+              "title": "OMP Threads",
+              "default": 2
+            }
+          },
+          "required": [
+            "cpu_request",
+            "memory_request",
+            "name",
+            "omp_num_threads",
+            "replicas"
+          ]
+        }
+      ]
+    },
+    "kafka": {
+      "type": "string",
+      "title": "Kafka Instance",
+      "enum": ["default", "olap"],
+      "default": "default"
+    },
+    "kafka_oplog": {
+      "type": "string",
+      "title": "Kafka oplog Instance",
+      "enum": ["default", "olap"],
+      "default": "olap"
+    },
+    "zookeeper": {
+      "type": "string",
+      "title": "ZooKeeper Instance",
+      "enum": ["default"],
+      "default": "default"
+    },
+    "minio": {
+      "type": "string",
+      "title": "MinIO Instance",
+      "enum": ["default"],
+      "default": "default"
+    },
+    "cassandra": {
+      "type": "string",
+      "title": "Cassandra Instance",
+      "enum": ["default", "olap", "alert"],
+      "default": "default"
+    }
+  },
+  "required": [
+    "cassandra",
+    "coordinator_cpu_request",
+    "coordinator_memory_request",
+    "coordinator_sync_oplog",
+    "coordinators",
+    "done_shard_started_days",
+    "done_shard_threshold_size",
+    "done_shard_unmodified_days",
+    "dump_interval",
+    "face_model_version",
+    "face_versions",
+    "https_enabled",
+    "image",
+    "kafka",
+    "kafka_oplog",
+    "loadshard",
+    "log_level",
+    "max_captured_time_latency",
+    "minio",
+    "name",
+    "nodes",
+    "ped_versions",
+    "pedestrian_model_version",
+    "rebalance_min_shard_size",
+    "reducer_cpu_request",
+    "reducer_memory_request",
+    "reducers",
+    "rpc_timeout_seconds",
+    "shard_expired_days",
+    "single_node",
+    "worker_reducer_sync_oplog",
+    "workers",
+    "zookeeper"
+  ]
+}

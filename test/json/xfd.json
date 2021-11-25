@@ -1,0 +1,30 @@
+{
+    "cassandra": "alert",
+    "cassandra_mv_v2_enable": true,
+    "https_enabled": true,
+    "image": {
+        "pullPolicy": "IfNotPresent",
+        "repository": "viper/engine-static-feature-db",
+        "tag": ""
+    },
+    "minio": "default",
+    "name": "3545924550",
+    "omp_num_threads": 4,
+    "proxy_cpu_request": "6",
+    "proxy_memory_request": "11Gi",
+    "storage_class": "storageclass-local-engine",
+    "worker_block_label": "viper.sensetime.com/node-engine-db-dsad-dasdad",
+    "worker_max_cache_num": 999999,
+    "worker_sets": [
+        {
+            "cpu_limit": "5",
+            "cpu_request": "3",
+            "heap_limit": 16384,
+            "memory_limit": "24Gi",
+            "memory_request": "12Gi",
+            "name": "cpu",
+            "replicas": 2,
+            "sets": 8
+        }
+    ]
+}

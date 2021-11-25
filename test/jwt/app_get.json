@@ -1,0 +1,136 @@
+{
+  "algo_app": {
+    "app_id": "8",
+    "algo_app_spec": {
+      "user_algo_name": "com.sensetime.algo.smoking",
+      "type": "ALGO_VIDEO_PROCESS",
+      "version": 20000,
+      "display_name": "公共场所抽烟行为发现",
+      "description": "公共场所抽烟行为发现",
+      "author": "huwulin@sensetime.com",
+      "hardware_compatibilities": {
+        "supported_devices": [
+          "nv_p4",
+          "nv_t4"
+        ]
+      },
+      "software_compatibilities": {
+        "min_runtime_version": 2,
+        "target_runtime_version": 2,
+        "supported_model_runtimes": [
+          "trt5"
+        ]
+      },
+      "object_specs": [
+        {
+          "user_object_type": "ST_SMOKING_IN_PUBLIC",
+          "version": 2,
+          "description": "smoking object type"
+        }
+      ],
+      "default_resources": {},
+      "worker_config_spec": {},
+      "config_specs": [
+        {
+          "schema_path": "",
+          "template_path": "",
+          "config_items": [],
+          "device": "nv_t4",
+          "cpu": "amd64",
+          "resource": {
+            "cpu": {
+              "request": "1.0",
+              "limit": "2.0"
+            },
+            "memory": {
+              "request": "2G",
+              "limit": "4G"
+            },
+            "device": {
+              "request": "1",
+              "limit": "1"
+            }
+          },
+          "video_process_config": {
+            "channels_per_replica": {
+              "by_resolution": {
+                "RESOLUTION_1080P": 40,
+                "RESOLUTION_4K": 10
+              }
+            }
+          }
+        },
+        {
+          "schema_path": "",
+          "template_path": "",
+          "config_items": [],
+          "device": "nv_p4",
+          "cpu": "amd64",
+          "resource": {
+            "cpu": {
+              "request": "1.0",
+              "limit": "2.0"
+            },
+            "memory": {
+              "request": "2G",
+              "limit": "4G"
+            },
+            "device": {
+              "request": "1",
+              "limit": "1"
+            }
+          },
+          "video_process_config": {
+            "channels_per_replica": {
+              "by_resolution": {
+                "RESOLUTION_1080P": 16,
+                "RESOLUTION_4K": 4
+              }
+            }
+          }
+        }
+      ],
+      "feature_specs": [],
+      "event_specs": [
+        {
+          "type": "ST_SMOKING_IN_PUBLIC",
+          "description": "smoking in public"
+        }
+      ],
+      "video_process_schema": {
+        "task_config_schema_path": "task-config.json",
+        "annotation_schema_path": "annotation.json"
+      }
+    },
+    "bundle_path": "APP_BUNDLE/ALGO_VIDEO_PROCESS/trt5/default/com.sensetime.algo.smoking.v20000.algo",
+    "tags": [
+      {
+        "id": "9",
+        "name": "政务",
+        "description": ""
+      },
+      {
+        "id": "12",
+        "name": "智慧政务",
+        "description": ""
+      }
+    ],
+    "icon": {
+      "format": "IMAGE_UNKNOWN",
+      "data": "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",
+      "url": ""
+    },
+    "created_at": "2021-01-13T12:59:47Z",
+    "task_config_schema": "ewogICAgIiRzY2hlbWEiOiAiaHR0cDovL2pzb24tc2NoZW1hLm9yZy9kcmFmdC0wNC9zY2hlbWEjIiwKICAgICJ0eXBlIjogIm9iamVjdCIsCiAgICAiYWRkaXRpb25hbFByb3BlcnRpZXMiOmZhbHNlLAogICAgInJlcXVpcmVkIjogWwogICAgICAicnVsZXMiCiAgICBdLAogICAgInByb3BlcnRpZXMiOiB7CiAgICAgICJydWxlcyI6IHsKICAgICAgICAidHlwZSI6ICJhcnJheSIsCiAgICAgICAgIml0ZW1zIjogewogICAgICAgICAgInR5cGUiOiAib2JqZWN0IiwKICAgICAgICAgICJwcm9wZXJ0aWVzIjogewogICAgICAgICAgICAidHlwZSI6IHsKICAgICAgICAgICAgICAidHlwZSI6ICJzdHJpbmciLAogICAgICAgICAgICAgICJwYXR0ZXJuIjogIl5TVF9TTU9LSU5HXyhJTl9QVUJMSUMpJCIKICAgICAgICAgICAgfSwKICAgICAgICAgICAgInJvaSI6IHsKICAgICAgICAgICAgICAidHlwZSI6ICJvYmplY3QiLAogICAgICAgICAgICAgICJyZXF1aXJlZCI6IFsKICAgICAgICAgICAgICAgICJ2ZXJ0aWNlcyIKICAgICAgICAgICAgICBdLAogICAgICAgICAgICAgICJwcm9wZXJ0aWVzIjogewogICAgICAgICAgICAgICAgInZlcnRpY2VzIjogewogICAgICAgICAgICAgICAgICAidHlwZSI6ICJhcnJheSIsCiAgICAgICAgICAgICAgICAgICJtaW5JdGVtcyI6IDMsCiAgICAgICAgICAgICAgICAgICJtYXhJdGVtcyI6IDEwMCwKICAgICAgICAgICAgICAgICAgIml0ZW1zIjogewogICAgICAgICAgICAgICAgICAgICJ0eXBlIjogIm9iamVjdCIsCiAgICAgICAgICAgICAgICAgICAgInByb3BlcnRpZXMiOiB7CiAgICAgICAgICAgICAgICAgICAgICAieCI6IHsKICAgICAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAibnVtYmVyIiwKICAgICAgICAgICAgICAgICAgICAgICAgIm1pbmltdW0iOiAwLAogICAgICAgICAgICAgICAgICAgICAgICAibWF4aW11bSI6IDEKICAgICAgICAgICAgICAgICAgICAgIH0sCiAgICAgICAgICAgICAgICAgICAgICAieSI6IHsKICAgICAgICAgICAgICAgICAgICAgICAgInR5cGUiOiAibnVtYmVyIiwKICAgICAgICAgICAgICAgICAgICAgICAgIm1pbmltdW0iOiAwLAogICAgICAgICAgICAgICAgICAgICAgICAibWF4aW11bSI6IDEKICAgICAgICAgICAgICAgICAgICAgIH0KICAgICAgICAgICAgICAgICAgICB9LAogICAgICAgICAgICAgICAgICAgICJyZXF1aXJlZCI6IFsKICAgICAgICAgICAgICAgICAgICAgICJ4IiwKICAgICAgICAgICAgICAgICAgICAgICJ5IgogICAgICAgICAgICAgICAgICAgIF0KICAgICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgICAgfQogICAgICAgICAgICAgIH0KICAgICAgICAgICAgfSwKICAgICAgICAgICAgImFjdGl2YXRlX3NlY29uZHMiOiB7CiAgICAgICAgICAgICAgInR5cGUiOiAibnVtYmVyIiwKICAgICAgICAgICAgICAibWluaW11bSI6IDAKICAgICAgICAgICAgfSwKICAgICAgICAgICAgImNvb2xkb3duX3NlY29uZHMiOiB7CiAgICAgICAgICAgICAgICAidHlwZSI6ICJudW1iZXIiLAogICAgICAgICAgICAgICAgIm1pbmltdW0iOiAwCiAgICAgICAgICAgIH0KICAgICAgICAgIH0sCiAgICAgICAgICAicmVxdWlyZWQiOiBbCiAgICAgICAgICAgICJ0eXBlIgogICAgICAgICAgXQogICAgICAgIH0KICAgICAgfQogICAgfQogIH0KICA=",
+    "checksum": "75daa155f309464d4afa7741e89e5205d096a3203f688279c97539539b206c8c",
+    "sale_type": "APP_FOR_SALE",
+    "status": "ACTIVATED",
+    "auth_item": {
+      "not_before": "1970-01-01T00:00:00Z",
+      "expired_at": "2021-03-31T00:00:00Z",
+      "video_process_auth": {
+        "channels": 100
+      }
+    }
+  }
+}
